@@ -47,8 +47,8 @@ router.post('/', [
 		}
 
 		jwt.sign(payload, config.get('jwtSecret'), {
-			// change for length of session
-			expiresIn: 60
+			// change length of session
+			expiresIn: 3600000
 		}, (err, token) => {
 			if (err) throw err
 			res.json({ token })
