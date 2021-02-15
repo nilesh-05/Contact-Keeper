@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const config = require('config')
 const auth = require('../middleware/auth')
-const { Mongoose } = require('mongoose')
 
 // @route  GET /api/auth
 // @desc   Get logged in
@@ -48,7 +47,8 @@ router.post('/', [
 		}
 
 		jwt.sign(payload, config.get('jwtSecret'), {
-			expiresIn: 360000
+			// change for length of session
+			expiresIn: 60
 		}, (err, token) => {
 			if (err) throw err
 			res.json({ token })
